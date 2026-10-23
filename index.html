@@ -2,17 +2,242 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <meta name="referrer" content="no-referrer">
-  <title>KevnaiMedia — TikTok Downloader Tanpa Watermark & MP3</title>
-  <meta name="description" content="Website publik KevnaiMedia untuk mengunduh video TikTok Full HD tanpa watermark, slide foto ke ZIP, dan musik MP3 dengan konsol Admin PIN dan sistem Maintenance.">
-  <meta property="og:title" content="KevnaiMedia — TikTok Downloader Tanpa Watermark & MP3">
-  <meta property="og:description" content="Website publik KevnaiMedia untuk mengunduh video TikTok Full HD tanpa watermark, slide foto ke ZIP, dan musik MP3 dengan konsol Admin PIN dan sistem Maintenance.">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>KevnAIMusic — 3D Tactile Music Player & Downloader</title>
+  
+  <!-- Font Outfit & JetBrains Mono untuk presisi tipografi taktil -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Background Glow & Cyber Ambient Layers -->
+  <div class="ambient-glow cyan-top"></div>
+  <div class="ambient-glow blue-bottom"></div>
+
+  <div class="app-container">
+    <!-- Header Utama -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-emblem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>KevnAI<span>Music</span></h1>
+          <span class="badge-tech">IROHA ENGINE v1</span>
+        </div>
+      </div>
+      
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span class="status-label">API ONLINE</span>
+      </div>
+    </header>
+
+    <!-- Search Section Tactile Bar -->
+    <section class="search-section">
+      <form id="search-form" class="tactile-search-wrapper">
+        <div class="search-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Cari lagu, artis, atau judul..." 
+          autocomplete="off" 
+          required
+        >
+        <button type="submit" class="tactile-btn tactile-btn-primary search-submit-btn" id="btn-search">
+          <span>Cari</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Grid Layout 2 Kolom (Mobile 1 Kolom, Desktop 2 Kolom) -->
+    <main class="main-layout">
+      
+      <!-- KOLOM KIRI: 3D MASTER PLAYER & VISUALIZER -->
+      <section class="player-column">
+        <div class="card-3d-wrapper" id="card-tilt-container">
+          <div class="card-3d-body frosted-card" id="player-card">
+            
+            <!-- Vinyl & Artwork Assembly -->
+            <div class="vinyl-assembly">
+              <div class="vinyl-disc" id="vinyl-disc">
+                <div class="vinyl-grooves"></div>
+                <div class="vinyl-center-label">
+                  <img id="vinyl-center-img" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=150" alt="Center Label">
+                </div>
+              </div>
+              <div class="cover-sleeve">
+                <img id="album-cover" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=600" alt="Album Cover">
+                <div class="cover-bevel-sheen"></div>
+              </div>
+            </div>
+
+            <!-- Track Metadata -->
+            <div class="track-meta">
+              <div class="meta-tags">
+                <span class="meta-badge" id="track-album">KevnAImusic Album</span>
+                <span class="meta-badge duration-badge" id="track-duration-badge">00:00</span>
+              </div>
+              <h2 class="track-title" id="track-title">Pilih atau Cari Lagu</h2>
+              <p class="track-artist" id="track-artist">Artis tidak diketahui</p>
+            </div>
+
+            <!-- Audio Canvas Visualizer -->
+            <div class="visualizer-container">
+              <canvas id="visualizer-canvas"></canvas>
+            </div>
+
+            <!-- Timeline Seekbar -->
+            <div class="timeline-container">
+              <div class="timeline-labels">
+                <span id="current-time">0:00</span>
+                <span id="total-time">0:00</span>
+              </div>
+              <div class="range-wrapper">
+                <input type="range" id="seek-bar" min="0" max="100" value="0" step="0.1">
+                <div class="seek-fill" id="seek-fill"></div>
+              </div>
+            </div>
+
+            <!-- Audio Master Controls -->
+            <div class="player-controls">
+              <button class="tactile-btn tactile-icon-btn" id="btn-prev" title="Lagu Sebelumnya">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                  <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5"></line>
+                </svg>
+              </button>
+
+              <button class="tactile-btn tactile-btn-master play-pause-btn" id="btn-play" title="Putar / Jeda">
+                <!-- Play Icon -->
+                <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                </svg>
+                <!-- Pause Icon (Hidden by default) -->
+                <svg id="icon-pause" class="hidden" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="6" y="4" width="4" height="16"></rect>
+                  <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+              </button>
+
+              <button class="tactile-btn tactile-icon-btn" id="btn-next" title="Lagu Berikutnya">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                  <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5"></line>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Volume & Quick Sliders -->
+            <div class="volume-container">
+              <button class="tactile-icon-btn mini" id="btn-mute" title="Mute">
+                <svg id="icon-vol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+              </button>
+              <div class="range-wrapper volume-range">
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.85">
+                <div class="seek-fill" id="volume-fill"></div>
+              </div>
+            </div>
+
+            <!-- Download & External Actions -->
+            <div class="action-buttons-group">
+              <button class="tactile-btn tactile-btn-download" id="btn-download">
+                <div class="download-content">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span id="download-btn-text">Unduh MP3 Kualitas Asli</span>
+                </div>
+                <!-- Progress Fill saat Download Berlangsung -->
+                <div class="download-progress-bar" id="download-progress-bar"></div>
+              </button>
+
+              <a href="#" target="_blank" rel="noopener noreferrer" class="tactile-btn tactile-btn-outline" id="btn-open-official">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>Buka di KevnAImusic</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- KOLOM KANAN: HASIL PENCARIAN & RIWAYAT -->
+      <section class="lists-column">
+        <div class="frosted-card lists-panel">
+          
+          <!-- Tab Navigasi -->
+          <div class="panel-tabs">
+            <button class="tab-btn active" data-tab="tab-search" id="tab-btn-search">
+              <span>Hasil Pencarian</span>
+              <span class="tab-counter" id="search-count">0</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-history" id="tab-btn-history">
+              <span>Riwayat Pemutaran</span>
+              <span class="tab-counter" id="history-count">0</span>
+            </button>
+          </div>
+
+          <!-- Tab Content 1: Pencarian -->
+          <div class="tab-pane active" id="tab-search">
+            <div class="list-container" id="search-results-list">
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="m10 15 5-3-5-3v6z"></path>
+                  </svg>
+                </div>
+                <h3>Mulai Jelajahi Musik</h3>
+                <p>Ketik judul lagu atau artis pada bilah pencarian di atas untuk memutar dan mengunduh.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content 2: Riwayat -->
+          <div class="tab-pane" id="tab-history">
+            <div class="history-actions-bar">
+              <span class="history-note">Tersimpan di Penyimpanan Lokal</span>
+              <button class="tactile-btn mini danger" id="btn-clear-history">Hapus Semua</button>
+            </div>
+            <div class="list-container" id="history-results-list">
+              <!-- Item riwayat dinamis -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Hidden native Audio element -->
+  <audio id="native-audio" crossorigin="anonymous" preload="metadata"></audio>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toast-container"></div>
+
   <script src="main.js"></script>
 </body>
 </html>
