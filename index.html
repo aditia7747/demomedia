@@ -1729,13 +1729,13 @@
       <section class="chassis-unit" id="leftChassis">
         <div class="screw-row">
           <span class="screw-bolt"></span>
-          <span class="unit-serial">VM-CONSOLE // INPUT DECK</span>
+          <span class="unit-serial">INPUT DECK</span>
           <span class="screw-bolt"></span>
         </div>
 
         <div class="oled-screen">
           <div class="oled-top-meta">
-            <span>SYS.READY</span>
+            <span>SYS</span>
             <span>NO-WATERMARK // HD</span>
           </div>
           <h1 class="oled-headline">Ekstraktor Video & Slide TikTok</h1>
@@ -1772,7 +1772,7 @@
 
         <div class="trigger-row">
           <button id="processBtn" class="keycap-launch" onclick="handleProcessClick()">
-            <i class="fa-solid fa-bolt"></i> EKSTRAK MEDIA
+            <i class="fa-solid fa-bolt"></i>DOWNLOAD
           </button>
           <button class="keycap-clear" onclick="resetAll()" title="Bersihkan Kolom">
             <i class="fa-solid fa-rotate-left"></i>
@@ -1794,7 +1794,7 @@
         <div id="historySection" class="cassette-rack">
           <div class="rack-header">
             <span class="rack-title">
-              <i class="fa-solid fa-compact-disc"></i> Kaset Riwayat Terakhir
+              <i class="fa-solid fa-compact-disc"></i>  Riwayat Terakhir
             </span>
             <button class="btn-purge-rack" onclick="clearHistory()">Hapus Semua</button>
           </div>
@@ -1853,7 +1853,7 @@
                 <div class="quick-module-box">
                   <span class="qm-num">LANGKAH 02</span>
                   <h5>Tempel ke Konsol</h5>
-                  <p>Ketuk tombol <b>TEMPEL</b> pada dek input lalu tekan <b>EKSTRAK MEDIA</b>.</p>
+                  <p>Ketuk tombol <b>TEMPEL</b> pada dek input lalu tekan <b>DOWNLOAD</b>.</p>
                 </div>
                 <div class="quick-module-box">
                   <span class="qm-num">LANGKAH 03</span>
@@ -1873,7 +1873,7 @@
               <p style="font-size:12px; color:var(--txt-mid);">Pilih salah satu video di bawah untuk langsung diekstrak ke monitor utama</p>
             </div>
             <button id="trendBtn" class="keycap-paste" onclick="loadTrendingVideos()">
-              <i class="fa-solid fa-arrows-rotate"></i> SEGARKAN RADAR
+              <i class="fa-solid fa-arrows-rotate"></i> SEGARKAN FYP
             </button>
           </div>
           <div id="trendingResults" class="fyp-radar-grid"></div>
@@ -1885,7 +1885,7 @@
   <!-- Bottom Floating Command Dock -->
   <nav class="floating-command-dock">
     <button class="dock-btn active" id="dockMonitor" onclick="switchView('monitor')">
-      <i class="fa-solid fa-tv"></i> <span>Monitor Ekstraksi</span>
+      <i class="fa-solid fa-tv"></i> <span>Dowbload VT</span>
     </button>
     <button class="dock-btn" id="dockFyp" onclick="switchView('fyp')">
       <i class="fa-solid fa-fire-flame-curved"></i> <span>Radar FYP</span>
@@ -2356,7 +2356,7 @@
           resetMonitorToStandby();
         } finally {
           btn.disabled = false;
-          btn.innerHTML = '<i class="fa-solid fa-bolt"></i> EKSTRAK MEDIA';
+          btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Download';
         }
       }
 
@@ -2549,10 +2549,10 @@
                     !isSlide
                       ? `
                     <button class="dl-keycap master-key" onclick="triggerAssetDownload('play', this)">
-                      <i class="fa-solid fa-download"></i> MP4 TANPA WATERMARK ${sdSize}
+                      <i class="fa-solid fa-download"></i> MP4 TANPA WATERMARK + HD V2 ${sdSize}
                     </button>
                     <button class="dl-keycap" onclick="triggerAssetDownload('hdplay', this)">
-                      <i class="fa-solid fa-bolt"></i> MP4 HD ${hdSize}
+                      <i class="fa-solid fa-bolt"></i> MP4 HD V1 ${hdSize}
                     </button>
                   `
                       : ""
@@ -2706,7 +2706,7 @@
                 <div class="fyp-author">@${escapeHtml(v.author?.unique_id || "tiktok")}</div>
                 <div class="fyp-desc">${escapeHtml(v.title || "Video TikTok")}</div>
                 <button class="dl-keycap" style="width:100%; padding:8px; font-size:11.5px;" onclick="selectFromFeed(${idx})">
-                  <i class="fa-solid fa-bolt"></i> BUKA DI MONITOR
+                  <i class="fa-solid fa-bolt"></i> Download
                 </button>
               </div>
             </div>
@@ -2715,10 +2715,10 @@
             .join("");
         } catch (e) {
           box.innerHTML =
-            '<p style="grid-column:1/-1; font-size:12.5px; color:#94a3b8; padding:24px; text-align:center;">Server sedang padat. Ketuk tombol Segarkan Radar di atas.</p>';
+            '<p style="grid-column:1/-1; font-size:12.5px; color:#94a3b8; padding:24px; text-align:center;">Server sedang padat. Ketuk tombol Segarkan FYP di atas.</p>';
         } finally {
           btn.disabled = false;
-          btn.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i> SEGARKAN RADAR';
+          btn.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i> SEGARKAN FYP';
         }
       }
 
@@ -3147,10 +3147,10 @@
               <div class="radar-ring inner"></div>
               <i class="fa-brands fa-tiktok radar-center-icon"></i>
             </div>
-            <h2 class="standby-title">Monitor Media Siap Menerima Tautan</h2>
+            <h2 class="standby-title"> Siap Menerima Tautan</h2>
             <p class="standby-desc">Tempel tautan video atau slide foto TikTok pada dek di samping, atau buka radar FYP Indonesia untuk memilih video populer secara langsung.</p>
             <button class="keycap-launch" style="max-width:300px; margin:0 auto; padding:13px 18px; font-size:14px;" onclick="switchView('fyp')">
-              <i class="fa-solid fa-fire-flame-curved"></i> JELAJAHI RADAR FYP INDO
+              <i class="fa-solid fa-fire-flame-curved"></i> JELAJAHI FYP INDO
             </button>
           </div>
         `;
